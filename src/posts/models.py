@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-
+from django.shortcuts import reverse
 class User(AbstractUser):
     pass
     def __str__(self):
@@ -19,6 +19,21 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('posts:post_detail', kwargs={
+            'slug':self.slug
+        })
+    
+    @property
+    def get_comment_count(self):
+        return self.comment_set.all().count()
+    @property
+    def get_view_count(self):
+        return self.postview_set.all().count()
+    @property
+    def get_like_count(self):
+        return self.like_set.all().count()
 
 #comentarios de nuestro post
 class Comment(models.Model):
