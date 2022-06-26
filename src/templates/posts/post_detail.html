@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="container">
+        <h1>{{post.title}}</h1>
+        <br><br><br>
+        {{post.content}}
+        <br><br><br>
+        <img src="{{post.thumbnail.url}}" alt="dragon">
+        <br><br>
+        <a href="{% url 'posts:post_update' post.slug %}">Actualizar</a>
+        
+        <a href="{% url 'posts:post_delete' post.slug %}">Eliminar</a>
+    </div>
+{% endblock content %}
+    
