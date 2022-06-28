@@ -1,6 +1,4 @@
 {% extends 'base.html' %}
-
-
 {% block content %}
     <div class="container">
         <div class="row justify-content-center">
@@ -22,7 +20,7 @@
                             <span><i class="far fa-comments mx-1"> </i>{{post.get_comment_count}}</span>
                         </p>
                         <p class="card-text">
-                            {{post.publish_date|timesince}}
+                            hace {{post.publish_date|timesince}}
                         </p>
                         </div>
                     </div>

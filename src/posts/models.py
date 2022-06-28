@@ -24,7 +24,15 @@ class Post(models.Model):
         return reverse('posts:post_detail', kwargs={
             'slug':self.slug
         })
+    def get_like_url(self):
+        return reverse('posts:post_like', kwargs={
+            'slug':self.slug
+        })
     
+    @property
+    def comments(self):
+        return self.comment_set.all()
+
     @property
     def get_comment_count(self):
         return self.comment_set.all().count()
