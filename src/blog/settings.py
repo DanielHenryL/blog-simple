@@ -1,17 +1,17 @@
 
 from pathlib import Path
 import os
-import environ
+
 import dj_database_url
+from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-env = environ.Env() #crear variables
-environ.Env.read_env()  #leer variables
+
 # SECRET_KEY = 'django-insecure-hx8kel9j9v$xfa_^)9m$4hg8lpjr=cvvx$_s$n*k&82vw2aw7z'
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG')
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
