@@ -9,11 +9,11 @@ environ.Env.read_env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECRET_KEY = 'django-insecure-hx8kel9j9v$xfa_^)9m$4hg8lpjr=cvvx$_s$n*k&82vw2aw7z'
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = 'django-insecure-hx8kel9j9v$xfa_^)9m$4hg8lpjr=cvvx$_s$n*k&82vw2aw7z'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG')
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -110,17 +110,19 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
-
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+STATICFILES_STORAGE='whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
