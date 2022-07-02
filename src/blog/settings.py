@@ -3,15 +3,17 @@ from pathlib import Path
 import os
 
 import dj_database_url
-from decouple import config
+import environ
+env = environ.Env()
+environ.Env.read_env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECRET_KEY = 'django-insecure-hx8kel9j9v$xfa_^)9m$4hg8lpjr=cvvx$_s$n*k&82vw2aw7z'
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get('DEBUG')
 
 ALLOWED_HOSTS = ['*']
 
@@ -35,13 +37,13 @@ INSTALLED_APPS = [
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "whitenoise.middleware.WhiteNoiseMiddleware",
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',   
 ]
 
 ROOT_URLCONF = 'blog.urls'
@@ -118,7 +120,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
