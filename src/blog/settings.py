@@ -63,7 +63,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'blog.wsgi.application'
-
+DISABLE_COLLECTSTATIC=1
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
