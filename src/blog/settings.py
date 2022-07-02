@@ -126,6 +126,6 @@ AUTHENTICATION_BACKENDS = [
 ]
 SITE_ID = 1
 AUTH_USER_MODEL = 'posts.User'
-
+DISABLE_COLLECTSTATIC=1
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
